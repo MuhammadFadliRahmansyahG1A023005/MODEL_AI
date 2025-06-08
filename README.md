@@ -257,7 +257,7 @@ Sistem Smart City Traffic Prediction ini mengikuti alur kerja yang logis, dimula
 
 
 ## 🚀 Pengembangan Lanjutan
-Proyek Smart City Traffic Prediction ini adalah titik awal yang kuat untuk sistem manajemen lalu lintas cerdas. Ada banyak area untuk pengembangan dan peningkatan lebih lanjut untuk menjadikannya lebih akurat, komprehensif, dan siap produksi:
+> Proyek Smart City Traffic Prediction ini adalah titik awal yang kuat untuk sistem manajemen lalu lintas cerdas. Ada banyak area untuk pengembangan dan peningkatan lebih lanjut untuk menjadikannya lebih akurat, komprehensif, dan siap produksi:
 
 1. Peningkatan Model Prediksi Lalu Lintas
 Data Historis Riil: Ganti data lalu lintas simulasi di train_model.py dengan dataset historis lalu lintas yang sesungguhnya (misalnya, dari sensor lalu lintas, GPS kendaraan, atau sumber data kota). Ini adalah langkah paling krusial untuk meningkatkan akurasi prediksi secara signifikan.
