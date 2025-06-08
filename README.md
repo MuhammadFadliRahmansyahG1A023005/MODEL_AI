@@ -94,6 +94,9 @@ Model ini sangat mudah dipahami dan diimplementasikan tanpa perlu data pelatihan
      Dalam konteks proyek ini, kami tidak mengintegrasikan sumber data lalu lintas *real-time* atau historis yang ekstensif. Data yang digunakan bersifat simulasi atau "dummy". Tanpa data sungguhan yang besar dan bervariasi, penggunaan model AI/ML yang lebih canggih tidak akan efektif dan justru menambah kompleksitas yang tidak perlu.
 
 
+### Diagram Alur Sistem
+<img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Gambar%20WhatsApp%202025-06-08%20pukul%2019.45.19_ae3b3724.jpg" width="400"/>
+
 ### Bagaimana Model Berbasis Aturan Kami Bekerja? ⚙️
 
 Inti dari "otak" prediksi kami ada pada fungsi `calculate_traffic_prediction`. Berikut cara kerjanya:
@@ -225,36 +228,6 @@ Sistem Smart City Traffic Prediction ini mengikuti alur kerja yang logis, dimula
    <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20183945.png" width="180"/>
    <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20184045.png" width="180"/>
    <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20184104.png" width="180"/>
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## 🚀 Pengembangan Lanjutan
 > Proyek Smart City Traffic Prediction ini adalah titik awal yang kuat untuk sistem manajemen lalu lintas cerdas. Ada banyak area untuk pengembangan dan peningkatan lebih lanjut untuk menjadikannya lebih akurat, komprehensif, dan siap produksi:
