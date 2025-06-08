@@ -1,13 +1,13 @@
 # 🚦 SmartCity Bengkulu - Prediksi Lalu Lintas Bengkulu
 Ini adalah kode untuk  **prediksi dan visualisasi lalu lintas berbasis web** di Bengkulu. 🗺️🚗
 
-## 👥 Anggota Kelompok 8
+## 👥 Anggota Kelompok 9
 
 | Nama                     | GitHub                                      |
 |--------------------------|---------------------------------------------|
 | Muhammad Fadli Rahmansyah | [MuhammadFadliRahmansyahG1A023005](https://github.com/MuhammadFadliRahmansyahG1A023005)  |
 | Hana Syarifah   | [HanaSyarifahG1A023017](https://github.com/HanaSyarifahG1A023017?authuser=0)    |
-| jundi Al farros   | [HanaSyarifahG1A023017](https://github.com/HanaSyarifahG1A023017?authuser=0)    |
+| jundi Al farros   | [HanaSyarifahG1A023017]([https://github.com/MuhammadFadliRahmansyahG1A023005](https://github.com/alfarros))    |
 
 ### Yang Akan Ditampilkan Kode Ini ✨
 
