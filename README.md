@@ -105,3 +105,114 @@ Inti dari "otak" prediksi kami ada pada fungsi `calculate_traffic_prediction`. B
     * **Cuaca ⛈️**: Kondisi cuaca buruk, seperti hujan atau hujan lebat, secara signifikan dapat memperlambat arus lalu lintas, sehingga volume kendaraan yang terasa memadati jalan akan lebih tinggi.
 3.  **Penentuan Tingkat Kemacetan**: Hasil perhitungan volume kendaraan yang diprediksi kemudian dibandingkan dengan kapasitas jalan untuk menentukan **tingkat kemacetan** (Normal, Padat, Sangat Padat, Macet Total) dan **warna indikator** yang sesuai (hijau, oranye, merah). Ambang batas ini telah ditetapkan secara *hardcoded* dalam kode.
 
+## 🗂️ Jenis & Sumber Data
+
+Aplikasi ini mengintegrasikan berbagai jenis data untuk memberikan informasi dan prediksi lalu lintas. Berikut adalah rincian jenis dan sumber data yang digunakan:
+
+### 2.1 Data Lalu Lintas
+
+* **Jenis Data:** Data volume kendaraan, kapasitas jalan, dan tingkat kemacetan.
+* **Sumber Data:**
+    * **Simulasi Internal:** Untuk tujuan pengembangan dan demonstrasi awal, data lalu lintas historis yang digunakan untuk melatih model AI (`traffic_model.pkl`) saat ini adalah **data simulasi** yang dihasilkan oleh skrip `train_model.py`. Simulasi ini mempertimbangkan faktor-faktor seperti kapasitas jalan, jam sibuk, hari dalam seminggu, dan kondisi cuaca untuk menciptakan pola yang mendekati perilaku lalu lintas.
+    * **Data Statis (CURRENT_TRAFFIC_DATA):** Data lalu lintas "terkini" yang ditampilkan di peta (`CURRENT_TRAFFIC_DATA` di `app.py`) adalah **data dummy statis** yang dibuat secara manual. Data ini mencakup nama jalan, perkiraan jumlah kendaraan, kapasitas, cuaca, tingkat kemacetan, dan koordinat geografis.
+
+### 2.2 Data Lokasi Geografis
+
+* **Jenis Data:** Koordinat lintang (latitude) dan bujur (longitude) serta nama-nama tempat.
+* **Sumber Data:**
+    * **Titik Penting (IMPORTANT_LOCATIONS):** Data koordinat untuk lokasi-lokasi penting di Bengkulu (seperti Benteng Marlborough, Masjid Jamik, dll.) adalah **data statis yang didefinisikan secara manual** di dalam file `app.py`.
+    * **Jalan dan Rute Alternatif (ROAD_DATA):** Koordinat titik-titik (polyline) yang membentuk jalur jalan utama dan rute alternatif, beserta kapasitas jalan, juga merupakan **data statis yang didefinisikan secara manual** di dalam `app.py`. Meskipun rute ini tidak digambar secara visual di peta saat ini, data koordinatnya tersedia untuk potensi pengembangan visualisasi rute.
+
+### 2.3 Data Cuaca
+
+* **Jenis Data:** Kondisi cuaca (Cerah, Berawan, Hujan, Hujan Lebat).
+* **Sumber Data:**
+    * **Simulasi Internal:** Dalam `train_model.py`, kondisi cuaca adalah **fitur yang disimulasikan secara acak** untuk melatih model.
+    * **Input Pengguna:** Dalam antarmuka web, kondisi cuaca adalah **input yang dipilih oleh pengguna** untuk prediksi lalu lintas.
+    * **Data Statis (CURRENT_TRAFFIC_DATA):** Kondisi cuaca untuk data lalu lintas "terkini" juga **didefinisikan secara statis**.
+
+**Catatan Pengembangan Lanjutan:**
+Seperti yang disorot di bagian "Pengembangan Lanjutan", untuk implementasi dunia nyata, sumber data ini perlu ditingkatkan secara signifikan dengan mengintegrasikan API data lalu lintas dan cuaca real-time, serta data historis yang sebenarnya.
+
+### ⚙️ Data Latih Model
+
+Model prediksi lalu lintas dalam program ini dilatih menggunakan data historis. Untuk keperluan demonstrasi dan mempermudah replikasi awal, data historis ini **disimulasikan** dalam skrip `train_model.py`.
+
+#### Fitur yang Digunakan untuk Pelatihan:
+
+Model Random Forest Regressor belajar dari pola-pola berikut untuk memprediksi volume kendaraan:
+
+* **`road_name`**: Nama jalan yang akan diprediksi lalu lintasnya (misalnya, "Jalan Suprapto", "Jalan Sudirman"). Ini adalah fitur kategorikal.
+* **`hour`**: Jam dalam sehari (0-23). Ini adalah fitur numerik.
+* **`day_of_week`**: Hari dalam seminggu (misalnya, "Monday", "Tuesday", ..., "Sunday"). Ini adalah fitur kategorikal.
+* **`weather`**: Kondisi cuaca saat itu (misalnya, "Cerah", "Berawan", "Hujan", "Hujan Lebat"). Ini adalah fitur kategorikal.
+
+#### Target Prediksi:
+
+* **`predicted_vehicle_count`**: Jumlah kendaraan yang diperkirakan akan berada di jalan pada waktu dan kondisi tertentu. Ini adalah variabel numerik yang merupakan target prediksi model.
+
+#### Simulasi Data:
+
+Dalam `train_model.py`, data historis disimulasikan berdasarkan logika sederhana yang mempertimbangkan:
+* **Kapasitas Jalan:** Setiap jalan memiliki kapasitas maksimum.
+* **Jam Sibuk (Rush Hour):** Volume lalu lintas lebih tinggi pada jam-jam sibuk pagi dan sore.
+* **Hari Kerja/Akhir Pekan:** Pola lalu lintas berbeda antara hari kerja dan akhir pekan.
+* **Kondisi Cuaca:** Cuaca buruk (hujan) dapat meningkatkan volume atau kepadatan lalu lintas.
+* **Noise:** Ditambahkan sedikit *noise* acak untuk membuat data lebih realistis dan tidak terlalu "sempurna".
+
+**Penting:**
+Untuk aplikasi dunia nyata, sangat disarankan untuk mengganti data simulasi ini dengan **data historis lalu lintas yang sesungguhnya** yang dikumpulkan dari sensor, GPS, atau sumber data lalu lintas lainnya. Menggunakan data riil akan secara signifikan meningkatkan akurasi dan relevansi prediksi model.
+
+## 🔄 Alur Kerja Sistem
+
+Sistem Smart City Traffic Prediction ini mengikuti alur kerja yang logis, dimulai dari pelatihan model hingga penyajian informasi dan prediksi kepada pengguna melalui antarmuka web.
+
+### 3.1 Alur Pelatihan Model (`train_model.py`)
+
+1.  **Pengambilan/Simulasi Data Historis:**
+    * Skrip `train_model.py` memulai dengan mensimulasikan data lalu lintas historis. Data ini mencakup `road_name`, `hour`, `day_of_week`, dan `weather` sebagai fitur, serta `predicted_vehicle_count` sebagai target.
+    * (Dalam implementasi dunia nyata, ini akan menjadi tahap di mana data historis riil dikumpulkan dari berbagai sumber seperti sensor lalu lintas, GPS, dll.)
+
+2.  **Preprocessing Data:**
+    * Data historis yang disimulasikan kemudian melalui tahap *preprocessing*.
+    * Fitur kategorikal (`road_name`, `day_of_week`, `weather`) dikodekan menggunakan `OneHotEncoder` agar dapat diproses oleh model.
+    * Fitur numerik (`hour`) distandarisasi menggunakan `StandardScaler` untuk memastikan skala yang seragam.
+    * Proses *preprocessing* ini dienkapsulasi dalam `ColumnTransformer` dan `Pipeline` dari Scikit-learn.
+
+3.  **Pelatihan Model Machine Learning:**
+    * Model *Random Forest Regressor* diinisialisasi dan dilatih menggunakan data yang telah diproses.
+    * Model belajar hubungan antara fitur-fitur (jalan, waktu, hari, cuaca) dan volume lalu lintas yang dihasilkan.
+
+4.  **Evaluasi Model:**
+    * Setelah pelatihan, model dievaluasi menggunakan $R^2$ Score pada data pelatihan dan data pengujian untuk mengukur kinerjanya.
+
+5.  **Penyimpanan Model:**
+    * Model yang telah dilatih kemudian disimpan sebagai file `traffic_model.pkl` menggunakan `joblib`. File ini akan dimuat oleh aplikasi web untuk melakukan prediksi.
+
+### 3.2 Alur Aplikasi Web (`app.py`)
+
+1.  **Inisialisasi Aplikasi Flask:**
+    * Saat `app.py` dijalankan, aplikasi web Flask dimulai.
+    * Model AI yang telah dilatih (`traffic_model.pkl`) dimuat ke dalam memori untuk digunakan dalam prediksi. Jika model tidak ditemukan atau gagal dimuat, sistem akan *fallback* ke logika prediksi berbasis aturan manual.
+
+2.  **Penyajian Halaman Utama:**
+    * Ketika pengguna mengakses URL utama (`/`), fungsi `index()` dipanggil.
+    * Peta interaktif Folium dibuat, berpusat di Bengkulu.
+    * Lokasi-lokasi penting (`IMPORTANT_LOCATIONS`) ditambahkan ke peta sebagai marker.
+    * Data lalu lintas "terkini" (`CURRENT_TRAFFIC_DATA`, yang merupakan data statis dummy) juga ditambahkan ke peta sebagai marker jalan dengan warna yang menunjukkan tingkat kemacetan.
+    * Legenda kustom ditambahkan ke peta.
+    * Halaman `index.html` dirender dan dikirim ke browser pengguna, termasuk peta yang sudah dihasilkan.
+
+3.  **Proses Prediksi Lalu Lintas (Saat Form Disubmit):**
+    * Pengguna memilih `road_name`, `hour`, `day`, dan `weather` dari form di antarmuka web.
+    * Ketika form disubmit (`POST` request), data input diambil.
+    * Fungsi `predict_traffic_with_ai()` dipanggil dengan input pengguna.
+    * Input pengguna diproses (disiapkan dalam format DataFrame) dan diberikan kepada model AI yang sudah dimuat (`traffic_prediction_model.predict()`).
+    * Model menghasilkan prediksi `predicted_vehicle_count`.
+    * Berdasarkan prediksi ini dan kapasitas jalan, tingkat kemacetan (`congestion_level`) dan warna (`congestion_color`) dihitung.
+    * Informasi rute alternatif untuk jalan yang dipilih juga diambil dari `ROAD_DATA`.
+
+4.  **Tampilan Hasil Prediksi:**
+    * Hasil prediksi (jumlah kendaraan, tingkat kemacetan, rute alternatif yang disarankan) ditampilkan kembali di halaman web.
+    * Peta diperbarui (atau diregenerasi) dengan informasi lalu lintas terkini dan form prediksi siap untuk input berikutnya.
+
