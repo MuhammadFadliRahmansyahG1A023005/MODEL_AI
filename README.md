@@ -220,7 +220,12 @@ Sistem Smart City Traffic Prediction ini mengikuti alur kerja yang logis, dimula
 > Pengujian dilakukan dengan studi kasus yaitu melakukan pencarian rute dan prediksi kemacetan dan alternatif jalan
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
 
-   <img src="" width="180"/>
+   <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20183917.png" width="180"/>
+   <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20183933.png" width="180"/>
+   <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20183945.png" width="180"/>
+   <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20184045.png" width="180"/>
+   <img src="https://github.com/MuhammadFadliRahmansyahG1A023005/MODEL_AI/blob/main/Cuplikan%20layar%202025-06-08%20184104.png" width="180"/>
+   
 
 
 
