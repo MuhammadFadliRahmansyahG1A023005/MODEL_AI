@@ -216,7 +216,11 @@ Sistem Smart City Traffic Prediction ini mengikuti alur kerja yang logis, dimula
     * Hasil prediksi (jumlah kendaraan, tingkat kemacetan, rute alternatif yang disarankan) ditampilkan kembali di halaman web.
     * Peta diperbarui (atau diregenerasi) dengan informasi lalu lintas terkini dan form prediksi siap untuk input berikutnya.
 
+## Pengujian aplikasi 
+> Pengujian dilakukan dengan studi kasus yaitu melakukan pencarian rute dan prediksi kemacetan dan alternatif jalan
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
 
+   <img src="" width="180"/>
 
 
 
