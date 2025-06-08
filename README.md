@@ -17,9 +17,6 @@ Ini adalah kode untuk  **prediksi dan visualisasi lalu lintas berbasis web** di 
     * Tingkat kemacetan yang diprediksi (misalnya, "Normal" ✅, "Padat" 🟠, "Macet" ⛔).
     * Perkiraan jumlah kendaraan yang lewat dan persentase kapasitas jalan yang digunakan.
     * **Rekomendasi Rute Alternatif**: Jika jalan utama diprediksi macet, aplikasi akan menyarankan jalur lain yang mungkin lebih lancar. 🔄
-Baik, mari kita bedah kelebihan dan kekurangan dari kode aplikasi prediksi lalu lintas ini.
-
----
 
 ### Kelebihan model Ini ✅
 
@@ -40,9 +37,6 @@ Baik, mari kita bedah kelebihan dan kekurangan dari kode aplikasi prediksi lalu 
 6.  **Ketergantungan pada Input Manual**
 7.  **Tidak Ada Validasi Input yang Kuat**
 
-Tentu, mari kita kemas informasi tentang model AI yang digunakan dalam proyek Anda agar lebih menarik di GitHub!
-
----
 
 ## Intip "Otak" di Balik Prediksi Lalu Lintas Kami: Model Berbasis Aturan yang Efisien 🧠
 
@@ -98,7 +92,6 @@ Model ini sangat mudah dipahami dan diimplementasikan tanpa perlu data pelatihan
 * **Keterbatasan Data Real-time** 🚧
      Dalam konteks proyek ini, kami tidak mengintegrasikan sumber data lalu lintas *real-time* atau historis yang ekstensif. Data yang digunakan bersifat simulasi atau "dummy". Tanpa data sungguhan yang besar dan bervariasi, penggunaan model AI/ML yang lebih canggih tidak akan efektif dan justru menambah kompleksitas yang tidak perlu.
 
----
 
 ### Bagaimana Model Berbasis Aturan Kami Bekerja? ⚙️
 
@@ -111,4 +104,3 @@ Inti dari "otak" prediksi kami ada pada fungsi `calculate_traffic_prediction`. B
     * **Cuaca ⛈️**: Kondisi cuaca buruk, seperti hujan atau hujan lebat, secara signifikan dapat memperlambat arus lalu lintas, sehingga volume kendaraan yang terasa memadati jalan akan lebih tinggi.
 3.  **Penentuan Tingkat Kemacetan**: Hasil perhitungan volume kendaraan yang diprediksi kemudian dibandingkan dengan kapasitas jalan untuk menentukan **tingkat kemacetan** (Normal, Padat, Sangat Padat, Macet Total) dan **warna indikator** yang sesuai (hijau, oranye, merah). Ambang batas ini telah ditetapkan secara *hardcoded* dalam kode.
 
-Dengan pendekatan ini, kami berhasil menciptakan sebuah sistem yang fungsional dan mudah dipahami, ideal untuk mendemonstrasikan potensi prediksi lalu lintas di Bengkulu! ✨
